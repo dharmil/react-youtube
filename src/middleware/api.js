@@ -1,29 +1,41 @@
-import {apiStart, apiDone} from '../actions/api';
-import {BASE_URL} from '../constants/api';
+import {apiStart, apiDone} from '../actions/ui';
+import * as type from '../constants/actionTypes';
 
 const apiMiddleware = ({dispatch}) => (next) => (action) => {
 
-    if(action.type !== 'API') {
+    if(action.type !== type.API) {
         return next(action);
     }
 
     const { payload } = action;
 
-    const handleError = error => dispatch({type: payload.error, error});
+    const handleError = error => {
+        if(error in payload) {
+            dispatch({type: payload.error, error});
+        } else {
+            console.log(error);
+        }
+    }
 
     dispatch(apiStart());
 
-    fetch(BASE_URL + payload.url)
-        .then(response => {
-            dispatch(apiDone());
-        })
+    fetch(payload.url)
         .then(response => {
             if (response.status >= 300) {
                 handleError(response.status);
             } else {
                 response.json()
-                .then(data => dispatch({ type: payload.next, data }));
+                .then(data => {
+                    if(typeof payload.success === 'function') {
+                        dispatch(payload.success(data));
+                    } else {
+                        dispatch({ type: payload.success, payload: data });
+                    }
+                });
             }
+        })
+        .then(response => {
+            dispatch(apiDone());
         })
         .catch(error => {
             dispatch(apiDone()); 

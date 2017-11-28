@@ -2,7 +2,7 @@ import * as type from '../constants/actionTypes';
 
 const videos = (state = [], action) => {
     switch(action.type) {
-        case type.APPEND_VIDEOS:
+        case type.VIDEOS_APPEND:
             return [...state, ...action.payload];
 
         default: 

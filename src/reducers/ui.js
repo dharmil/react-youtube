@@ -1,10 +1,16 @@
 import * as type from '../constants/actionTypes';
 
 const initialState = {
-    requests: 0
+    global: {
+        requests: 0
+    },
+    videos: {
+        nextPageToken: '', 
+        totalResults: 0
+    }
 };
 
-const ui = (state = initialState, action) => {
+const globalReducer = (state = initialState.global, action) => {
     switch(action.type) {
         case type.API_START:
             return {...state, requests: state.requests + 1};
@@ -16,5 +22,22 @@ const ui = (state = initialState, action) => {
             return state;
     }
 };
+
+const videosReducer = (state = initialState.videos, action) => {
+    switch(action.type) {
+        case type.VIDEOS_UPDATE_INFO:
+            return {...state, ...action.payload};
+
+        default:
+            return state;
+    }
+}
+
+const ui = (state = initialState, action) => {
+    return {
+        global: globalReducer(state.global, action),
+        videos: videosReducer(state.videos, action)
+    }
+}
 
 export default ui;
