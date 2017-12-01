@@ -16,7 +16,7 @@ export const videosUpdateInfo = (data) => {
     return {
         type: type.VIDEOS_UPDATE_INFO,
         payload: {
-            pageToken: data.nextPageToken,
+            nextPageToken: data.nextPageToken,
             totalResults: data.pageInfo.totalResults
         }
     }
