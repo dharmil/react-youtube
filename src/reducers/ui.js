@@ -2,11 +2,12 @@ import * as type from '../constants/actionTypes';
 
 const initialState = {
     global: {
-        requests: 0
+        requests: 0,
     },
     videos: {
         nextPageToken: '', 
-        totalResults: 0
+        totalResults: 0,
+        query: '',
     }
 };
 
