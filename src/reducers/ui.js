@@ -20,7 +20,7 @@ const globalReducer = (state = initialState.global, action) => {
             return {...state, requests: state.requests + 1};
 
         case type.API_DONE:
-            return {...state, requests: state.requests - 1};
+            return {...state, requests: (state.requests - 1 >= 0) ? state.requests - 1 : 0};
 
         default:
             return state;

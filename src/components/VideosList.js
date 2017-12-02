@@ -1,11 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import "../grid.css";
 import VideoItem from "./VideoItem";
 import {searchYoutube} from '../actions/videos';
 import {chunk} from './../utils';
 
-const InnerVideosList = (props) => {
+const VideosList = (props) => {
     const videos = chunk(props.videos, 4);
     const {ui, dispatch} = props;
 
@@ -24,16 +23,5 @@ const InnerVideosList = (props) => {
         {ui.nextPageToken !== '' && <div className = "row center-xs"><input type = "button" value = "Load More" onClick={onLoadMore} /></div>}
     </div>;
 };
-
-const mapStateToProps = (state) => {
-    return {
-        videos: state.videos,
-        ui: state.ui.videos
-    }
-};
-
-const VideosList = connect(
-    mapStateToProps,
-)(InnerVideosList)
 
 export default VideosList;

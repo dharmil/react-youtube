@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Search from './components/Search';
-import VideosList from './components/VideosList';
-import VideoPageContainer from './components/VideoPage';
+import VideosListContainer from './containers/VideosListContainer';
+import VideoPageContainer from './containers/VideoPageContainer';
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
         <Header />
         <Search />
         <VideoPageContainer videoId='_VOXxKDNCuM' />
-        <VideosList />
+        <VideosListContainer />
       </div>
     );
   }

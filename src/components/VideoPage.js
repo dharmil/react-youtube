@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import "../grid.css";
 import {getVideoById} from '../actions/video';
 import {getComments} from '../actions/comments';
 import YouTube from 'react-youtube';
+import Comments from './Comments';
 
-class VideoPage extends Component
+export default class VideoPage extends Component
 {
     componentDidMount() {
         const {ui, dispatch} = this.props;
@@ -20,11 +21,16 @@ class VideoPage extends Component
         }
     }
 
+    onLoadMoreComments = (e) => {
+        e.preventDefault();
+        this.props.dispatch(getComments(this.props.id, this.props.ui.comments.nextPageToken));
+    }
+
     render() {
         console.log(this.props);
         const opts = {
-            height: '390',
-            width: '640',
+            height: '720',
+            width: '1280',
             playerVars: {
               autoplay: 0
             }
@@ -33,21 +39,7 @@ class VideoPage extends Component
         return <div>
             Video page for {this.props.id}<br />
             <YouTube videoId={this.props.id} opts={opts} />
+            <Comments comments={this.props.comments} loadMoreComments={this.onLoadMoreComments} />
             </div>;
     }
 }
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        video: state.video,
-        comments: state.comments.filter((comment) => comment.snippet.videoId === ownProps.videoId),
-        id: ownProps.videoId,
-        ui: state.ui,
-    }
-};
-
-const VideoPageContainer = connect(
-    mapStateToProps,
-)(VideoPage)
-
-export default VideoPageContainer;
