@@ -1,7 +1,6 @@
 import * as type from '../constants/actionTypes';
-import {VIDEOS_API_URL, API_KEY} from '../constants/api';
-
-const queryString = (obj) => Object.keys(obj).map(k => `${k}=${encodeURIComponent(obj[k])}`).join('&');
+import {VIDEOS_SEARCH_API_URL, API_KEY} from '../constants/api';
+import {queryString} from './../utils';
 
 const constantParams = () => {return {key: API_KEY, part: 'snippet', maxResults: 25, type: 'video'}};
 
@@ -46,7 +45,7 @@ export const searchYoutube = (query, pageToken = '') => (dispatch) => {
     dispatch({
         type: type.API,
         payload: {
-            url: `${VIDEOS_API_URL}` + queryString({q: query, pageToken, ...constantParams()}),
+            url: `${VIDEOS_SEARCH_API_URL}` + queryString({q: query, pageToken, ...constantParams()}),
             success: (pageToken === '') ? videosIntialSearchSuccess : videosConsequentSearchSuccess
         }
     });

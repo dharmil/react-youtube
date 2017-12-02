@@ -1,24 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import "../grid.css";
-import Video from "./Video";
+import VideoItem from "./VideoItem";
 import {searchYoutube} from '../actions/videos';
-
-const chunk = (arr, size) => {
-    let rows = [];
-    for(let i = 0; i < arr.length; i = i + size) {
-        let row = [];
-
-        for(let j = 0; j < size; j++) {
-            if (i + j < arr.length)
-            row.push(arr[i + j]);
-        }
-
-        rows.push(row);
-    }
-
-    return rows;
-};
+import {chunk} from './../utils';
 
 const InnerVideosList = (props) => {
     const videos = chunk(props.videos, 4);
@@ -32,10 +17,11 @@ const InnerVideosList = (props) => {
     return <div className="videoslist">
         {props.videos.length >= 0 && videos.map((row, index) => {
             return <div className="row" key={index}>
-                        {row.map((video, i) => <Video key = {i} video={video} />)}
+                        {row.map((video, i) => <VideoItem key = {i} video={video} />)}
                     </div>;
         })}
-        {ui.nextPageToken !== '' && <a onClick={onLoadMore}>Load More</a>}
+        <br />
+        {ui.nextPageToken !== '' && <div className = "row center-xs"><input type = "button" value = "Load More" onClick={onLoadMore} /></div>}
     </div>;
 };
 

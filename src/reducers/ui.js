@@ -8,7 +8,10 @@ const initialState = {
         nextPageToken: '', 
         totalResults: 0,
         query: '',
-    }
+    },
+    comments: {
+        nextPageToken: '',
+    },
 };
 
 const globalReducer = (state = initialState.global, action) => {
@@ -34,10 +37,21 @@ const videosReducer = (state = initialState.videos, action) => {
     }
 }
 
+const commentsReducer = (state = initialState.comments, action) => {
+    switch(action.type) {
+        case type.COMMENTS_UPDATE_INFO:
+            return {...state, ...action.payload};
+
+        default:
+            return state;
+    }
+}
+
 const ui = (state = initialState, action) => {
     return {
         global: globalReducer(state.global, action),
-        videos: videosReducer(state.videos, action)
+        videos: videosReducer(state.videos, action),
+        comments: commentsReducer(state.comments, action)
     }
 }
 
