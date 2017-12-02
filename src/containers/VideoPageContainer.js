@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        video: state.video,
-        comments: state.comments.filter((comment) => comment.snippet.videoId === ownProps.videoId),
-        id: ownProps.videoId,
+        video: (state.video.id === ownProps.match.params.videoId) ? state.video : {},
+        comments: state.comments.filter((comment) => comment.snippet.videoId === ownProps.match.params.videoId),
+        id: ownProps.match.params.videoId,
         ui: state.ui,
     }
 };
