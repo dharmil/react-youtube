@@ -12,4 +12,6 @@ export const COMMENTS_APPEND = 'COMMENTS_APPEND';
 export const COMMENTS_UPDATE_INFO = 'COMMENTS_UPDATE_INFO';
 export const COMMENTS_SET = 'COMMENTS_SET';
 
+export const SUGGESTIONS_SET = 'SUGGESTIONS_SET';
+
 export const API = 'API';

@@ -1,7 +1,6 @@
 import * as type from '../constants/actionTypes';
 import {VIDEOS_API_URL, API_KEY} from '../constants/api';
 import {queryString} from './../utils';
-import {getComments} from './comments';
 
 const constantParams = () => {return {key: API_KEY, part: 'snippet,statistics'}};
 

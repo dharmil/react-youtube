@@ -12,6 +12,7 @@ const initialState = {
     comments: {
         nextPageToken: '',
     },
+    suggestions: [],
 };
 
 const globalReducer = (state = initialState.global, action) => {
@@ -47,11 +48,22 @@ const commentsReducer = (state = initialState.comments, action) => {
     }
 }
 
+const suggestionsReducer = (state = initialState.suggestions, action) => {
+    switch(action.type) {
+        case type.SUGGESTIONS_SET:
+            return [...action.payload];
+
+        default:
+            return state;
+    }
+}
+
 const ui = (state = initialState, action) => {
     return {
         global: globalReducer(state.global, action),
         videos: videosReducer(state.videos, action),
-        comments: commentsReducer(state.comments, action)
+        comments: commentsReducer(state.comments, action),
+        suggestions: suggestionsReducer(state.suggestions, action),
     }
 }
 
