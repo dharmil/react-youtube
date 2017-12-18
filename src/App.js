@@ -9,8 +9,10 @@ class App extends Component {
   render() {
     return (
       <div className = "App">
-        <Header />
-        <Search />
+        <div className="header">
+          <Header />
+          <Search />
+        </div>
         <Switch>
           <Route exact path = '/' component = {VideosListContainer} />
           <Route exact path = '/video/:videoId' component = {VideoPageContainer} />

@@ -1,13 +1,38 @@
+body {
+  margin: 0;
+  display: block;
+}
+
 .App {
   display: flex;
   height: 100vh;
   width: 100vw;
   flex-direction: column;
+  background-color: #fafafa;
 }
 
 .header {
   display: flex;
-  height: 10%;
+  flex: 0 1 5%;
+}
+
+.search_bar {
+  display: flex;
+  flex: 0 1 5%;
   justify-content: center;
   align-items: center;
+}
+
+.video_page {
+  display: flex;
+  flex: 1 1 0%;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.video_title {
+  overflow: hidden;
+  font-weight: 400;
+  color: black;
+  font-size: 1.8em;
 }

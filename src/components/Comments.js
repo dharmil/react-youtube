@@ -8,8 +8,8 @@ const renderComment = (comment) => {
         borderRadius: '25px'
     };
 
-    return <tr>
-        <td colSpan = "20%"><img src = {snippet.authorProfileImageUrl} alt = "avatar" style = {style} /></td>
+    return <tr key = {comment.id}>
+        <td colSpan = "20%"><img src = {snippet.authorProfileImageUrl} alt = "avatar" height="40" width="40" style = {style} /></td>
         <td colSpan = "80%"><div>{snippet.authorDisplayName}</div><div>{snippet.textOriginal}</div></td>
     </tr>;
 }
@@ -23,9 +23,9 @@ const Comments = (props) => {
         loadMore = <div className = "row center-xs"><input type = "button" value = "Load More" onClick={props.loadMoreComments} /></div>;        
     }
 
-    return <div><table>
+    return <div><table><tbody>
         {comments.map((comment) => renderComment(comment))}
-    </table>{loadMore}</div>;
+    </tbody></table>{loadMore}</div>;
 }
 
 export default Comments;

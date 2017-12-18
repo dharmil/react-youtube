@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "../grid.css";
+import "../App.css";
 import {getVideoById} from '../actions/video';
 import {getComments} from '../actions/comments';
 import YouTube from 'react-youtube';
@@ -26,8 +27,17 @@ export default class VideoPage extends Component
         this.props.dispatch(getComments(this.props.id, this.props.ui.comments.nextPageToken));
     }
 
+    renderPrimaryInfo = (video) => {
+        if (Object.keys(video).length === 0) {
+            return null;
+        }
+        
+        return <div className="primary_info" style = {{fontSize: '10px'}}>
+        <div className = "video_title">{video.snippet.title}</div>
+        </div>;
+    }
+
     render() {
-        console.log(this.props);
         const opts = {
             height: '720',
             width: '1280',
@@ -36,8 +46,9 @@ export default class VideoPage extends Component
             }
           };
 
-        return <div>
+        return <div className = "video_page">
             Video page for {this.props.id}<br />
+            {this.renderPrimaryInfo(this.props.video)}
             <YouTube videoId={this.props.id} opts={opts} />
             <Comments comments={this.props.comments} loadMoreComments={this.onLoadMoreComments} />
             </div>;
