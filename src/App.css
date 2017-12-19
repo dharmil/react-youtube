@@ -14,6 +14,7 @@ body {
 .header {
   display: flex;
   flex: 0 1 5%;
+  justify-content: center;
 }
 
 .search_bar {
@@ -23,16 +24,43 @@ body {
   align-items: center;
 }
 
-.video_page {
+.content_wrapper {
   display: flex;
-  flex: 1 1 0%;
-  align-items: center;
-  flex-flow: column nowrap;
+  margin-left: 2%;
+  margin-right: 2%;
+  box-sizing: border-box;
+  flex: 0 1 96%;
+}
+
+.main_content {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 75%;
+  box-sizing: border-box;
+}
+
+.related_videos {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 25%;
+  box-sizing: border-box;
+}
+
+.video_page {
 }
 
 .video_title {
   overflow: hidden;
   font-weight: 400;
   color: black;
-  font-size: 1.8em;
+  font-size: 18px;
+}
+
+.view_counter {
+  color: rgba(17, 17, 17, 0.6);
+  font-size: 16px;
+}
+
+.like_menu {
+  position: relative;
 }
