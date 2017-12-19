@@ -8,6 +8,7 @@ const initialState = {
         nextPageToken: '', 
         totalResults: 0,
         query: '',
+        resultType: 'search',
     },
     comments: {
         nextPageToken: '',

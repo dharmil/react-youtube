@@ -10,7 +10,7 @@ const VideosList = (props) => {
 
     const onLoadMore = (e) => {
         e.preventDefault();
-        dispatch(searchYoutube(ui.query, ui.nextPageToken));
+        dispatch(searchYoutube(ui.query, ((ui.resultType === 'search') ? ui.nextPageToken : '')));
     };
 
     return <div className="videoslist">

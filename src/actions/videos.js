@@ -40,12 +40,24 @@ export const videosConsequentSearchSuccess = (data) => (dispatch) => {
 
 export const searchYoutube = (query, pageToken = '') => (dispatch) => {
     if(pageToken === '') 
-        dispatch({type: type.VIDEOS_UPDATE_INFO, payload: {query}});
+        dispatch({type: type.VIDEOS_UPDATE_INFO, payload: {query, resultType: 'search'}});
 
     dispatch({
         type: type.API,
         payload: {
             url: `${VIDEOS_SEARCH_API_URL}` + queryString({q: query, pageToken, ...constantParams()}),
+            success: (pageToken === '') ? videosIntialSearchSuccess : videosConsequentSearchSuccess
+        }
+    });
+}
+
+export const getRelatedVideos = (videoId, pageToken = '')  => (dispatch) => {
+    dispatch({type: type.VIDEOS_UPDATE_INFO, payload: {resultType: 'relatedVideos'}});
+
+    dispatch({
+        type: type.API,
+        payload: {
+            url: `${VIDEOS_SEARCH_API_URL}` + queryString({relatedToVideoId: videoId, pageToken, ...constantParams()}),
             success: (pageToken === '') ? videosIntialSearchSuccess : videosConsequentSearchSuccess
         }
     });
