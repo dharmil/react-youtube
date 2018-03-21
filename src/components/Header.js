@@ -1,9 +1,15 @@
 import React from 'react';
-import './../grid.css';
 import './../App.css';
+import Search from './Search';
 
 const Header = () => {
-    return <div style={{display: 'flex', flex: '1 1 0%'}}>My YT app 3</div>;
+    return <div className = "header">
+        <div className = "nav">
+            <span>Home</span>
+            <span>Playlist</span>
+        </div>
+        <Search />
+    </div>
 };
 
 export default Header;

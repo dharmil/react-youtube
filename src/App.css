@@ -1,66 +1,189 @@
-body {
+html {
+  box-sizing: border-box;
+  font-size: 16px;
   margin: 0;
-  display: block;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-.App {
+.App_container {
   display: flex;
-  height: 100vh;
   width: 100vw;
+  border: 2px solid blue;
   flex-direction: column;
-  background-color: #fafafa;
+  max-width: 100%;
 }
 
-.header {
+.App_container > .header {
   display: flex;
-  flex: 0 1 5%;
-  justify-content: center;
-}
-
-.search_bar {
-  display: flex;
-  flex: 0 1 5%;
-  justify-content: center;
+  flex: 0 0 50px;
+  border: 2px solid red;
   align-items: center;
 }
 
-.content_wrapper {
+.search {
+  border: 1px solid gray;
+}
+
+.header > .nav {
   display: flex;
-  margin-left: 2%;
-  margin-right: 2%;
-  box-sizing: border-box;
-  flex: 0 1 96%;
+  flex: 0 0 250px;
+  justify-content: space-around;
+  font-size: 1.3rem;
+  margin-right: 30px;
 }
 
-.main_content {
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 75%;
-  box-sizing: border-box;
-}
-
-.related_videos {
-  display: flex;
-  flex-direction: column;
-  flex: 0 1 25%;
-  box-sizing: border-box;
-}
-
-.video_page {
-}
-
-.video_title {
-  overflow: hidden;
-  font-weight: 400;
+.nav > .span:hover {
+  background-color: red;
   color: black;
-  font-size: 18px;
 }
 
-.view_counter {
-  color: rgba(17, 17, 17, 0.6);
-  font-size: 16px;
+.search > input {
+  padding: 6px;
+  width: 700px;
+  border: none;
 }
 
-.like_menu {
+.search > button {
+  border: none;
+  padding: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.App_container > .content_container {
+  display: flex;
+  flex: 1 1 auto;
+  border: 2px solid gray;
+}
+
+.content_container > .right_split {
+  display: flex;
+  flex: 0 0 500px;
+  border: 2px solid pink;
+  flex-direction: column;
+  order: 2;
+}
+
+.content_container > .left_split {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 100%;
+}
+
+.right_split > .image_row {
+  display: flex;
+  flex: 0 0 100px;
+  margin-left: 10px;
+}
+
+.image_row > .image_pic {
+  display: flex;
+  flex: 0 0 168px;
+  margin-bottom: 10px;
+  max-width: 168px;
+}
+
+.image_row > .image_description {
+  display: flex;
+  flex: 0 1 100%;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.image_description > .image_desc_title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+
+.image_description > .image_publisher_title {
+  font-size: 0.8rem;
+  color: hsla(0, 0%, 6.7%, .6);
+}
+
+.image_description > .image_num_views {
+  font-size: 0.8rem;
+  color: hsla(0, 0%, 6.7%, .6);
+}
+
+.image_description > .video_duration {
   position: relative;
+  left: -50px;
+  bottom: -20px;
+  background-color: gray;
+  color: white;
+  max-width: 35px;
+  text-align: center;
+  font-size: 0.9rem;    
+}
+
+.left_split > .video_container {
+  display: flex;
+  flex: 0 1 720px;
+  padding: 20px;
+  border: 2px dotted violet;
+}
+
+.left_split > .video_metadata_container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.left_split > .video_desc_container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.video_metadata_container > .video_title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.video_metadata_container > .video_views {
+  color: hsla(0, 0%, 6.7%, .6);
+  margin-bottom: 20px;
+}
+
+.video_desc_container > .video_publisher {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.video_desc_container > .video_description {
+  max-height: 300px;
+  text-overflow: ellipsis;
+}
+
+.left_split > .comments_container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.comments_container > .comments_row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.comments_row > .comment_avatar {
+  flex: 0 0 40px;
+  max-height: 40px;
+  margin-right: 20px;
+  border-radius: 25px;
+}
+
+.comments_row > .comment_description {
+  max-height: 100px;
+  overflow: hidden;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment_description > span:first-child {
+  font-weight: bold;
+  margin-bottom: 5px;
 }

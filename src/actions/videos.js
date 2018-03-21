@@ -51,13 +51,14 @@ export const searchYoutube = (query, pageToken = '') => (dispatch) => {
     });
 }
 
+/* we can only fetch the "snippet" part of the video. to request the extra content, we will have to perform a video list api call with the content requested" */
 export const getRelatedVideos = (videoId, pageToken = '')  => (dispatch) => {
     dispatch({type: type.VIDEOS_UPDATE_INFO, payload: {resultType: 'relatedVideos'}});
 
     dispatch({
         type: type.API,
         payload: {
-            url: `${VIDEOS_SEARCH_API_URL}` + queryString({relatedToVideoId: videoId, pageToken, ...constantParams()}),
+            url: `${VIDEOS_SEARCH_API_URL}` + queryString({relatedToVideoId: videoId, pageToken, ...constantParams(), part: 'snippet'}), 
             success: (pageToken === '') ? videosIntialSearchSuccess : videosConsequentSearchSuccess
         }
     });

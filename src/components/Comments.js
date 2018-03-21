@@ -1,17 +1,15 @@
 import React from 'react';
-import "../grid.css";
 
 const renderComment = (comment) => {
     const snippet = comment.snippet.topLevelComment.snippet;
 
-    const style = {
-        borderRadius: '25px'
-    };
-
-    return <tr key = {comment.id}>
-        <td colSpan = "20%"><img src = {snippet.authorProfileImageUrl} alt = "avatar" height="40" width="40" style = {style} /></td>
-        <td colSpan = "80%"><div>{snippet.authorDisplayName}</div><div>{snippet.textOriginal}</div></td>
-    </tr>;
+    return <div className = "comments_row">
+        <img src = {snippet.authorProfileImageUrl} alt = "avatar" className = "comment_avatar" />
+        <div class = "comment_description">
+            <span>{snippet.authorDisplayName}</span>
+            <span>{snippet.textDisplay}</span>
+        </div>
+    </div>;
 }
 
 const Comments = (props) => {
@@ -20,12 +18,13 @@ const Comments = (props) => {
     let loadMore = null;
 
     if(comments.length > 0) {
-        loadMore = <div className = "row center-xs"><input type = "button" value = "Load More" onClick={props.loadMoreComments} /></div>;        
+        loadMore = <center><input type = "button" value = "Load More" onClick={props.loadMoreComments} /></center>;
     }
 
-    return <div><table><tbody>
+    return <div className = "comments_container">
         {comments.map((comment) => renderComment(comment))}
-    </tbody></table>{loadMore}</div>;
+        {loadMore}
+        </div>;
 }
 
 export default Comments;

@@ -32,8 +32,9 @@ class Search extends Component {
 
     render() {
 
-        return (<div style={{display: 'flex', flex: '7 1 0%'}}>
-            <input type = "text" style = {{width: '100%'}} list = "suggestions" onChange={this.onChangeHandler} onKeyUp={this.onKeyUp} value={this.state.query} />
+        return (<div className = "search">
+            <input type = "text" placeholder = "Search" list = "suggestions" onChange={this.onChangeHandler} onKeyUp={this.onKeyUp} value={this.state.query} />
+            <button type="submit"><i className="fa fa-search"></i></button>
             <datalist id = "suggestions">
                 {this.props.suggestions.map((sug, index) => <option key={index} value={sug} />)}
             </datalist>
