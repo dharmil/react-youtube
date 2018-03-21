@@ -7,7 +7,7 @@ const renderComment = (comment) => {
         <img src = {snippet.authorProfileImageUrl} alt = "avatar" className = "comment_avatar" />
         <div class = "comment_description">
             <span>{snippet.authorDisplayName}</span>
-            <span>{snippet.textDisplay}</span>
+            <span dangerouslySetInnerHTML={{__html: snippet.textDisplay}}></span>
         </div>
     </div>;
 }

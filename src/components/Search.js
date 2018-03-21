@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import './../grid.css';
 import {searchYoutube} from '../actions/videos';
 import {getSuggestions} from '../actions/suggestions';
 import debounce from 'debounce';
