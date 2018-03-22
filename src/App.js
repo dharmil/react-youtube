@@ -9,7 +9,6 @@ class App extends Component {
     return (
       <div className = "App">
         <div className = "App_container">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
             <Header />
             <Switch>
               <Route exact path = '/' component = {VideosListContainer} />

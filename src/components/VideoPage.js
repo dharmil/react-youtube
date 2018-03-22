@@ -5,6 +5,7 @@ import {getComments} from '../actions/comments';
 import {getRelatedVideos} from '../actions/videos';
 import YouTube from 'react-youtube';
 import Comments from './Comments';
+import {Link} from 'react-router-dom';
 
 export default class VideoPage extends Component
 {
@@ -13,29 +14,39 @@ export default class VideoPage extends Component
         this.state = { width: 0, height: 0 };
     }
 
-    componentDidMount() {
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-
-        const {ui, dispatch} = this.props;
-
+    fetchData = (props) => {
+        const {ui, dispatch} = props;
+        
         if(ui.global.requests === 0) {
-            if(Object.keys(this.props.video).length === 0) {
-                dispatch(getVideoById(this.props.id));
+            if(Object.keys(props.video).length === 0) {
+                dispatch(getVideoById(props.id));
             }
 
-            if(this.props.comments.length === 0) { 
-                dispatch(getComments(this.props.id));
+            if(props.comments.length === 0) { 
+                dispatch(getComments(props.id));
             }
 
-            if(this.props.videos.length === 0) {
-                dispatch(getRelatedVideos(this.props.id, (this.props.ui.videos.resultType === 'relatedVideos') ? this.props.ui.videos.nextPageToken : ''));
+            if(props.videos.length === 0) {
+                dispatch(getRelatedVideos(props.id, (props.ui.videos.resultType === 'relatedVideos') ? props.ui.videos.nextPageToken : ''));
             }
         }
     }
 
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+
+        this.fetchData(this.props);
+    }
+
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.id !== nextProps.id) {
+            this.fetchData(nextProps);
+        }
     }
       
     updateWindowDimensions = (e) => {
@@ -74,8 +85,9 @@ export default class VideoPage extends Component
 
         return <div className = "right_split">
         {videos.map((video, index) => {
+            const videoLink = `/video/${video.id.videoId}`;
             return <div key = {index} className = "image_row">
-                <img alt = "preview" className = "image_pic" src = {video.snippet.thumbnails.high.url} />
+                <Link to={videoLink}><img alt = "preview" className = "image_pic" src = {video.snippet.thumbnails.high.url} /></Link>
                 <div className = "image_description">
                     <span className = "image_desc_title">
                         {video.snippet.title}
@@ -98,7 +110,7 @@ export default class VideoPage extends Component
 
     render() {
         const opts = {
-            height: '720',
+            height: 720,
             width: this.state.width - 600,
             playerVars: {
               autoplay: 0

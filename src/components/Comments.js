@@ -3,9 +3,9 @@ import React from 'react';
 const renderComment = (comment) => {
     const snippet = comment.snippet.topLevelComment.snippet;
 
-    return <div className = "comments_row">
+    return <div key = {comment.id} className = "comments_row">
         <img src = {snippet.authorProfileImageUrl} alt = "avatar" className = "comment_avatar" />
-        <div class = "comment_description">
+        <div className = "comment_description">
             <span>{snippet.authorDisplayName}</span>
             <span dangerouslySetInnerHTML={{__html: snippet.textDisplay}}></span>
         </div>

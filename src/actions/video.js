@@ -4,7 +4,7 @@ import {queryString} from './../utils';
 
 const constantParams = () => {return {key: API_KEY, part: 'snippet,statistics'}};
 
-export const videosSet = (data) => {
+export const videoSet = (data) => {
     return {
         type: type.VIDEO_SET,
         payload: data.items[0]
@@ -16,7 +16,7 @@ export const getVideoById = (videoId) => {
         type: type.API,
         payload: {
             url: `${VIDEOS_API_URL}` + queryString({id: videoId, ...constantParams()}),
-            success: videosSet
+            success: videoSet
         }
     };
 }

@@ -73,12 +73,12 @@ html {
   display: flex;
   flex: 0 0 100px;
   margin-left: 10px;
+  margin-bottom: 40px;
 }
 
-.image_row > .image_pic {
+.image_row .image_pic {
   display: flex;
   flex: 0 0 168px;
-  margin-bottom: 10px;
   max-width: 168px;
 }
 
