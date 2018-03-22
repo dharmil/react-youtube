@@ -103,7 +103,7 @@ export default class VideoPage extends Component
                     </span> */}
                 </div>
             </div>;
-        })};
+        })}
         <center><input onClick = {this.onLoadMoreVideos} type = "button" value = "Load More" /></center>
         </div>;
     }
