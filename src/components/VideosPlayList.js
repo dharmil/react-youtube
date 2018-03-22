@@ -4,7 +4,6 @@ import {getNextVideo} from '../actions/playlist';
 
 export default class VideosPlayList extends VideoPage
 {
-
     onLoadMoreVideos = null;
 
     onStateChangeHandler = (e) => {
@@ -13,16 +12,8 @@ export default class VideosPlayList extends VideoPage
         }
     }
 
-    getYoutubeOptions = () => {
-        // const defaultOpts = super.getYoutubeOptions();
-        // return {...defaultOpts, ...{playerVars: {autoplay: 1}}};
-        return {
-            height: 720,
-            width: this.state.width - 600,
-            playerVars: {
-              autoplay: 1
-            }
-          };
+    getYoutubeOptions() {
+        return {...super.getYoutubeOptions(), ...{playerVars: {autoplay: 1}}};
     }
 
     render() {

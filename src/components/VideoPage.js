@@ -13,6 +13,7 @@ export default class VideoPage extends Component
     constructor(props) {
         super(props)
         this.state = { width: 0, height: 0 };
+        this.getYoutubeOptions = this.getYoutubeOptions.bind(this);
     }
 
     fetchData = (props) => {
@@ -64,7 +65,7 @@ export default class VideoPage extends Component
         this.props.dispatch(getRelatedVideos(this.props.id, this.props.ui.videos.nextPageToken));
     }
 
-    getYoutubeOptions = () => {
+    getYoutubeOptions() {
         return {
             height: 720,
             width: this.state.width - 600,
