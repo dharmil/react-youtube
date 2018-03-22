@@ -201,7 +201,19 @@ html {
   padding: 5px;
 }
 
-.video_grid img {
+.video_grid .img_container {
   width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.img_container > img {
   height: 180px;
+}
+
+.img_container > span {
+  align-self: center;
+  font-size: 1.6rem;
+  color: red;
+  cursor: pointer;
 }

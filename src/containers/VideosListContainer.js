@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 const mapStateToProps = (state) => {
     return {
         videos: (state.ui.videos.resultType === 'search') ? state.videos : [],
-        ui: state.ui.videos
+        playlist: state.playlist,
+        ui: state.ui.videos,
     }
 };
 

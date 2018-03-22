@@ -14,4 +14,7 @@ export const COMMENTS_SET = 'COMMENTS_SET';
 
 export const SUGGESTIONS_SET = 'SUGGESTIONS_SET';
 
+export const PLAYLIST_UPDATE_INFO = 'PLAYLIST_UPDATE_INFO';
+export const PLAYLIST_APPEND = 'PLAYLIST_APPEND';
+
 export const API = 'API';

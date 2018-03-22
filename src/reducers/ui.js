@@ -14,6 +14,9 @@ const initialState = {
         nextPageToken: '',
     },
     suggestions: [],
+    playlist: {
+        index: 0,
+    }
 };
 
 const globalReducer = (state = initialState.global, action) => {
@@ -59,12 +62,23 @@ const suggestionsReducer = (state = initialState.suggestions, action) => {
     }
 }
 
+const playlistReducer = (state = initialState.playlist, action) => {
+    switch(action.type) {
+        case type.PLAYLIST_UPDATE_INFO:
+            return {...state, ...action.payload};
+
+        default:
+            return state;
+    }
+}
+
 const ui = (state = initialState, action) => {
     return {
         global: globalReducer(state.global, action),
         videos: videosReducer(state.videos, action),
         comments: commentsReducer(state.comments, action),
         suggestions: suggestionsReducer(state.suggestions, action),
+        playlist: playlistReducer(state.playlist, action),
     }
 }
 
