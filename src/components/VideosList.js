@@ -1,5 +1,4 @@
 import React from 'react';
-import "../grid.css";
 import VideoItem from "./VideoItem";
 import {searchYoutube} from '../actions/videos';
 import {playlistAppend} from '../actions/playlist';
