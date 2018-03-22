@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import VideosListContainer from './containers/VideosListContainer';
 import VideoPageContainer from './containers/VideoPageContainer';
+import VideosPlayListContainer from './containers/VideosPlayListContainer';
 import {Route, Switch} from 'react-router-dom';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
             <Switch>
               <Route exact path = '/' component = {VideosListContainer} />
               <Route exact path = '/video/:videoId' component = {VideoPageContainer} />
+              <Route exact path = '/playlist/' component = {VideosPlayListContainer} />
             </Switch>
         </div>
       </div>

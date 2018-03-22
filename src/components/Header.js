@@ -7,7 +7,7 @@ const Header = () => {
     return <div className = "header">
         <div className = "nav">
             <span><Link to="/">Home</Link></span>
-            <span>Playlist</span>
+            <span><Link to="/playlist">Playlist</Link></span>
         </div>
         <Search />
     </div>

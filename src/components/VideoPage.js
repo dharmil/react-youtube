@@ -5,7 +5,8 @@ import {getComments} from '../actions/comments';
 import {getRelatedVideos} from '../actions/videos';
 import YouTube from 'react-youtube';
 import Comments from './Comments';
-import {Link} from 'react-router-dom';
+import RecommendedVideos from './RecommendedVideos';
+import VideoInfo from './VideoInfo';
 
 export default class VideoPage extends Component
 {
@@ -63,67 +64,26 @@ export default class VideoPage extends Component
         this.props.dispatch(getRelatedVideos(this.props.id, this.props.ui.videos.nextPageToken));
     }
 
-    renderPrimaryInfo = (video) => {
-        if (Object.keys(video).length === 0) {
-            return null;
-        }
-        
-        return <div className = "video_metadata_container">
-                <span className = "video_title">{video.snippet.title}</span>
-                <span className = "video_views">{video.statistics.viewCount} views</span>
-            </div>;
-                // <div className = "video_desc_container">
-                //     <span className = "video_publisher">T-Series</span>
-                //     <span className = "video_description">lameloa</span>
-                // </div>;
-    }
-
-    renderRecommendedVideos = (videos) => {
-        if (Object.keys(videos).length === 0) {
-            return <div className = "right_split" />;
-        }
-
-        return <div className = "right_split">
-        {videos.map((video, index) => {
-            const videoLink = `/video/${video.id.videoId}`;
-            return <div key = {index} className = "image_row">
-                <Link to={videoLink}><img alt = "preview" className = "image_pic" src = {video.snippet.thumbnails.high.url} /></Link>
-                <div className = "image_description">
-                    <span className = "image_desc_title">
-                        {video.snippet.title}
-                    </span>
-                    <span className = "image_publisher_title">
-                        {video.snippet.channelTitle}
-                    </span>
-                    {/* <span className = "image_num_views">
-                        97M views
-                    </span>
-                    <span className = "video_duration">
-                        3:31
-                    </span> */}
-                </div>
-            </div>;
-        })}
-        <center><input onClick = {this.onLoadMoreVideos} type = "button" value = "Load More" /></center>
-        </div>;
-    }
-
-    render() {
-        const opts = {
+    getYoutubeOptions = () => {
+        return {
             height: 720,
             width: this.state.width - 600,
             playerVars: {
               autoplay: 0
             }
           };
+    }
 
+    onStateChangeHandler = (e) => {}
+
+    render() {
         return  <div className = "content_container">
-                    {this.renderRecommendedVideos(this.props.videos)}
+                    <RecommendedVideos videos={this.props.videos} onLoadMoreVideos={this.onLoadMoreVideos} />
                     <div className = "left_split">
                         <div className = "video_container">
-                            <YouTube videoId={this.props.id} opts={opts} />
+                            <YouTube videoId={this.props.id} opts={this.getYoutubeOptions()} onStateChange={this.onStateChangeHandler} />
                         </div>
-                        {this.renderPrimaryInfo(this.props.video)}
+                        <VideoInfo video={this.props.video} />
                         <Comments comments={this.props.comments} loadMoreComments={this.onLoadMoreComments} />
                     </div>
                 </div>;
